@@ -5,8 +5,7 @@ This is TapTinder Client.
 
 You can register on http://tt.taptinder.org and create account
 for your client or you should install your own TapTinder Server 
-https://github.com/mj41/TapTinder-Server to get something
-useful.
+https://github.com/mj41/TapTinder to get something useful.
 
 TapTinder Client require base installation of Perl 5
 on Linux/Unix, Windows, FreeBSD or MacOS machine.

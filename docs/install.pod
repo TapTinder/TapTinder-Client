@@ -1,0 +1,17 @@
+=head1 Fedora 15
+
+=head2 Install
+
+ yum install perl-JSON
+
+=head2 Configure
+
+ cd ~/ttdev/tt-client
+ mkdir ../client-conf
+ cp conf/client-conf.yml.example ../client-conf/client-conf.yml
+ vim ../client-conf/client-conf.yml
+
+=head2 Start
+
+ perl ttclient.pl --help
+ perl ttclient.pl --csn=dev --ver=5 
