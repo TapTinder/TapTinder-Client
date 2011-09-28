@@ -1,0 +1,46 @@
+Index: t/steps/gen_call_list-01.t
+===================================================================
+--- t/steps/gen_call_list-01.t	(revision 27979)
++++ t/steps/gen_call_list-01.t	(working copy)
+@@ -1,6 +1,6 @@
+ #! perl
+ # Copyright (C) 2007-2008, The Perl Foundation.
+-# $Id: $
++# $Id$
+ # gen_call_list-01.t
+ 
+ use strict;
+Index: config/gen/call_list.pm
+===================================================================
+--- config/gen/call_list.pm	(revision 27979)
++++ config/gen/call_list.pm	(working copy)
+@@ -1,5 +1,5 @@
+ # Copyright (C) 2008, The Perl Foundation.
+-# $Id: $
++# $Id$
+ 
+ =head1 NAME
+ 
+Index: config/gen/opengl.pm
+===================================================================
+--- config/gen/opengl.pm	(revision 27979)
++++ config/gen/opengl.pm	(working copy)
+@@ -1,5 +1,5 @@
+ # Copyright (C) 2008, The Perl Foundation.
+-# $Id: /parrot/remote/config/gen/opengl.pm 5153 2008-05-12T11:10:21.497490Z bernhard  $
++# $Id$
+ 
+ =head1 NAME
+ 
+Index: languages/perl6/t/pmc/mutable.t
+===================================================================
+--- languages/perl6/t/pmc/mutable.t	(revision 27979)
++++ languages/perl6/t/pmc/mutable.t	(working copy)
+@@ -1,6 +1,6 @@
+ #! ../../parrot
+ # Copyright (C) 2007-2008, The Perl Foundation.
+-# $Id:$
++# $Id$
+ 
+ =head1 NAME
+ 

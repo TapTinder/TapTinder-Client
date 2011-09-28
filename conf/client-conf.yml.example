@@ -1,0 +1,14 @@
+--- 
+dev:
+   machine_id: 4
+   machine_passwd: ttdePAssWD7632
+   email: email@somedomain.com
+   irc_nick: YourProjectIRCNick
+   taptinderserv: http://tapir1.ro.vutbr.cz:2000/
+
+prod:
+   machine_id: SomeNumber
+   machine_passwd: YourClientPasswd
+   email: email@somedomain.com
+   irc_nick: YourProjectIRCNick
+   taptinderserv: http://tt.taptinder.org/
