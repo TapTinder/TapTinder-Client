@@ -1,0 +1,22 @@
+TapTinder is continuous integration and automated testing tool 
+for software engineering.
+
+This is TapTinder Client. 
+
+You can register on http://tt.taptinder.org and create account
+for your client or you should install your own TapTinder Server 
+https://github.com/mj41/TapTinder-Server to get something
+useful.
+
+TapTinder Client require base installation of Perl 5
+on Linux/Unix, Windows, FreeBSD or MacOS machine.
+
+See http://www.taptinder.org for more info.
+
+Join irc://irc.freenode.org/taptinder
+
+Clone client repository, start client and follow instructions to setup
+
+  cd ~/ && mkdir ttdev && cd ttdev
+  git clone git://github.com/mj41/TapTinder-Client.git tt-client
+  perl ttclient.pl
