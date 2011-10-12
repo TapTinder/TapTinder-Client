@@ -1,3 +1,7 @@
+=head1 Warning
+
+Absolutly no warranty for this software.
+
 =head1 Fedora 15
 
 =head2 Install

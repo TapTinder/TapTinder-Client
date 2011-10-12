@@ -1,10 +1,10 @@
 --- 
 dev:
-   machine_id: 4
+   machine_id: 1
    machine_passwd: ttdePAssWD7632
    email: email@somedomain.com
    irc_nick: YourProjectIRCNick
-   taptinderserv: http://tapir1.ro.vutbr.cz:2000/
+   taptinderserv: http://localhost:2000/
 
 prod:
    machine_id: SomeNumber
