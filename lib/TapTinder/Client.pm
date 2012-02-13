@@ -220,7 +220,7 @@ Initialize WebAgent object.
 
 sub init_repmanager {
     my ( $self ) = @_;
-    
+
     unless ( -d $self->{data_dir} ) {
         mkdir $self->{data_dir} or croak $!;
     }
@@ -336,8 +336,9 @@ Run command.
 
 sub run_cmd {
     my (
-        $self, $cmd_name, $cmd_env, $cmd, $cmd_params,
-        $cmd_timeout, $outdata_file_full_path
+        $self,
+        $cmd_name, $cmd_env, $cmd, $cmd_params, $cmd_timeout,
+        $outdata_file_full_path
     ) = @_;
 
     my $base_out_fname =
@@ -456,14 +457,13 @@ sub ccmd_trun {
 
     my $cmd;
     if ( $^O eq 'MSWin32' ) {
-        $cmd = 'perl.exe t\harness --archive';
+        $cmd = 'perl.exe t\harness';
     } else {
-        $cmd = 'perl t/harness --archive';
+        $cmd = 'perl t/harness';
     }
     my $cmd_timeout = 15*60; # 15 min
 
-    # TODO - Parrot file name
-    my $outdata_file_full_path = catfile( $cmd_env->{temp_dir}, 'parrot_test_run.tar.gz' );
+    my $outdata_file_full_path = catfile( $cmd_env->{temp_dir}, 'harness-archive.tgz' );
     return $self->run_cmd( $cmd_name, $cmd_env, $cmd, $cmd_params, $cmd_timeout, $outdata_file_full_path );
 }
 
@@ -575,9 +575,9 @@ sub run {
         $data = $self->{agent}->mscreate();
     } while ( $self->process_agent_errors_get_err_num( 'mscreate', $data ) );
     $self->{msession_id} = $data->{msid};
-    
+
     $self->{keypress}->process_keypress();
-    
+
     # ToDo - fork, errors
     my $proc_data = $self->{agent}->mspcreate( $self->{msession_id} );
     $self->process_agent_errors_get_err_num( 'mspcreate', $proc_data );
@@ -679,7 +679,7 @@ sub run {
                 # will set another keys to $cmd_env
                 $ret_code = $self->ccmd_get_src( $cmd_name, $cmd_env, $cmd_params );
                 return $self->cleanup_and_return_zero() unless $ret_code;
-                
+
                 # change current working directory (cwd, pwd)
                 chdir( $cmd_env->{temp_dir} );
 
