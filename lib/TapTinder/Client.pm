@@ -627,7 +627,8 @@ sub run {
             $next_attempt_number++;
 
             print "New msjobp_cmd_id not found.\n";
-            last if $self->{params}->{end_after_no_new_job};
+            last if $self->{params}{run_only_one_job};
+            last if $self->{params}{end_after_no_new_job};
             last if $debug; # debug - end forced by debug
 
             my $sleep_time = 15;
@@ -640,6 +641,8 @@ sub run {
 
             # new job
             if ( !defined($msjob_id) || ( exists($data->{msjob_id}) && $msjob_id != $data->{msjob_id}) ) {
+                last if $self->{params}{run_only_one_job} && $job_num > 0;
+
                 $job_num++;
 
                 $cmd_env = {};

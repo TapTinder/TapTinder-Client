@@ -253,9 +253,13 @@ sub prepare_temp_copy {
     }
 
     # fetch
-    print "Doing git fetch ('$src_dir_path').\n" if $self->{ver} >= 4;
-    ( $rc, $o_log ) = GitShell::git_fetch( $src_dir_path );
-    return $self->git_cmd_error( $rc, 'git_fetch', $o_log ) unless $rc;
+    unless ( $ENV{TT_SKIP_FETCH} ) {
+		print "Doing git fetch ('$src_dir_path').\n" if $self->{ver} >= 4;
+		( $rc, $o_log ) = GitShell::git_fetch( $src_dir_path );
+		return $self->git_cmd_error( $rc, 'git_fetch', $o_log ) unless $rc;
+	} else {
+		print "Skipping git fetch ('$src_dir_path').\n" if $self->{ver} >= 4;
+	}
 
     # checkout
     print "Doing git update ('$src_dir_path').\n" if $self->{ver} >= 4;

@@ -25,6 +25,7 @@ my $conf_section_name = 'dev';
 my $conf_fpath = catfile( $RealBin, '..', 'client-conf', 'client-conf.yml' );
 my $ver = 2; # verbosity level
 my $debug = 0; # debug
+my $run_only_one_job = 0;
 my $end_after_no_new_job = 0;
 
 my $options_ok = GetOptions(
@@ -34,6 +35,7 @@ my $options_ok = GetOptions(
     'verbose|v=i' => \$ver,
     'debug|d=i' => \$debug,
     'end_after_no_new_job' => \$end_after_no_new_job,
+    'run_only_one_job' => \$run_only_one_job,
 );
 pod2usage(1) if $help || !$options_ok;
 
@@ -65,6 +67,7 @@ do {
             ver => $ver,
             debug => $debug,
             end_after_no_new_job => $end_after_no_new_job,
+            run_only_one_job => $run_only_one_job,
         }
     );
     $client->run();
@@ -108,8 +111,12 @@ ttclient [options]
    --help
    --conf_fpath ... Config file path.
    --ver ... Verbose level, 0-5, default 2.
+   --run_only_one_job ... Will end after the first job processing finish.
    --end_after_no_new_job ... Will end if new job not found.
    --config_section_name ... Configuration section name. Default 'dev'.
+
+  Environment variables:
+    TT_SKIP_FETCH ... Skip git fetch (get_src command).
 
 =head1 DESCRIPTION
 

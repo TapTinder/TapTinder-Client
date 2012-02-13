@@ -24,4 +24,9 @@ Absolutly no warranty for this software.
 =head2 Start
 
  perl ttclient.pl --help
- perl ttclient.pl --csn=dev --ver=5 
+ perl ttclient.pl --csn=dev --ver=5
+
+=head2 Devel testing
+
+ perl ttclient.pl --csn=dev --run_only_one_job --ver=5
+ TT_SKIP_FETCH=1 perl ttclient.pl --csn=dev --ver=5
