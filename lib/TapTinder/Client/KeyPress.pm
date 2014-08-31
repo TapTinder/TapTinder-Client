@@ -30,6 +30,13 @@ sub new {
     $hooks->{pause_end} = sub {};
     $self->{hooks} = $hooks;
 
+    $self->{cleanup_done} = 0;
+
+    $SIG{INT} = sub {
+        $self->cleanup_before_exit(1);
+        exit 1;
+    };
+
     return $self;
 }
 
@@ -66,9 +73,14 @@ sub set_pause_end_sub {
 
 
 sub cleanup_before_exit {
-    my ( $self ) = @_;
+    my ( $self, $force ) = @_;
+
+    return 1 if $self->{cleanup_done};
+    $self->{cleanup_done} = 1;
+
+    print "Running cleanup phase (force $force).\n" if $self->{ver} >= 3;
+    Term::ReadKey::ReadMode('restore');
     $self->{hooks}->{before_exit}->();
-    Term::ReadKey::ReadMode('normal');
     return 1;
 }
 
@@ -108,7 +120,7 @@ sub process_keypress() {
 
             } elsif ( $char eq 'Q' || $char eq 'E' ) {
                 print "User press exit key.\n" if $ver > 2;
-                $self->cleanup_before_exit();
+                $self->cleanup_before_exit(0);
                 exit;
 
             } else {
@@ -150,5 +162,9 @@ sub sleep_and_process_keypress {
     return 1;
 }
 
+sub DESTROY {
+    my $self = shift;
+    $self->cleanup_before_exit(1);
+}
 
 1;
