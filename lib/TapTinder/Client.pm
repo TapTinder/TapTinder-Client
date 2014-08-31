@@ -641,6 +641,7 @@ sub run {
 
             # new job
             if ( !defined($msjob_id) || ( exists($data->{msjob_id}) && $msjob_id != $data->{msjob_id}) ) {
+                # ToDo - do not ask for new msjob_id if current command was the last in the job.
                 last if $self->{params}{run_only_one_job} && $job_num > 0;
 
                 $job_num++;
