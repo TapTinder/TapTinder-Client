@@ -14,8 +14,4 @@ See http://www.taptinder.org for more info.
 
 Join irc://irc.freenode.org/taptinder
 
-Clone client repository, start client and follow instructions to setup
-
-  cd ~/ && mkdir ttdev && cd ttdev
-  git clone git://github.com/mj41/TapTinder-Client.git tt-client
-  perl ttclient.pl
+See docs/install.pod for more info.

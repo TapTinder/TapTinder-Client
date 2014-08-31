@@ -2,31 +2,37 @@
 
 Absolutly no warranty for this software.
 
-=head1 Fedora 15
+=head1 Fedora 20
 
 =head2 Install modules
 
  yum install git
  yum install perl-JSON
 
+=head2 Set up directories
+
+  mkdir -p ~/tt-clients
+  mkdir -p ~/tt-clients/ttdev
+  mkdir -p ~/tt-clients/ttdev/client-conf
+  mkdir -p ~/tt-clients/ttdev/client-data
+
 =head2 Clone
 
- mkdir ~/ttdev && cd ~/ttdev
- git clone git://github.com/mj41/TapTinder-Client.git tt-client
+  git clone https://github.com/mj41/TapTinder-Client.git ~/tt-clients/ttdev/tt-client
 
 =head2 Configure
 
- cd ~/ttdev/tt-client
- mkdir ../client-conf
+ cd ~/tt-clients/ttdev/tt-client
  cp conf/client-conf.yml.example ../client-conf/client-conf.yml
  vim ../client-conf/client-conf.yml
 
-=head2 Start
-
- perl ttclient.pl --help
- perl ttclient.pl --csn=dev --ver=5
-
-=head2 Devel testing
+=head2 The first test
 
  perl ttclient.pl --csn=dev --run_only_one_job --ver=5
  TT_SKIP_FETCH=1 perl ttclient.pl --csn=dev --ver=5
+ # see results on your 'dev' server
+
+=head2 Start dev
+
+ perl ttclient.pl --help
+ perl ttclient.pl --csn=dev --ver=5
