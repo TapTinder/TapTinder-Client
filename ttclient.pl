@@ -5,7 +5,6 @@ use warnings;
 
 use Carp qw(carp croak verbose);
 use FindBin qw($RealBin);
-use Data::Dumper;
 use File::Spec::Functions;
 
 # CPAN libs and own libs
@@ -52,7 +51,7 @@ print "Loading config file section '$conf_section_name'.\n" if $ver >= 3;
 my $client_conf = load_client_conf( $conf_fpath, $conf_section_name );
 
 # debug, will also dump passwd on screen
-# print Dumper( $client_conf ) if $ver >= 5;
+# use Data::Dumper; print Dumper( $client_conf ) if $ver >= 5;
 
 print "Starting Client.\n" if $ver >= 3;
 

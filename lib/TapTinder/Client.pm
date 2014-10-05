@@ -6,7 +6,6 @@ use Carp qw(carp croak verbose);
 
 our $VERSION = '0.21';
 
-use Data::Dumper;
 use File::Spec::Functions;
 use Cwd;
 use File::Copy;
