@@ -1,0 +1,7 @@
+---
+docker:
+   machine_id: 1
+   machine_passwd: tt-docker-pswd765
+   email: docker-default-user@devnull.taptinder.org
+   irc_nick: docker-default-irc-nick
+   taptinderserv: http://web:2000/
