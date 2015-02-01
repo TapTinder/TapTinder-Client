@@ -20,7 +20,6 @@ use TapTinder::Client;
 use TapTinder::Client::Conf qw(load_client_conf);
 
 my $help = 0;
-my $conf_section_name = 'dev';
 my $conf_dir = $ENV{'TAPTINDER_CLIENT_CONF_DIR'} // catfile( $RealBin, 'conf' );
 my $conf_fpath = catfile( $conf_dir, 'client-conf.yml' );
 my $ver = 2; # verbosity level
@@ -30,7 +29,6 @@ my $end_after_no_new_job = 0;
 
 my $options_ok = GetOptions(
     'help|h|?' => \$help,
-    'config_section_name|csn=s' => \$conf_section_name,
     'conf_fpath|cfp=s' => \$conf_fpath,
     'verbose|v=i' => \$ver,
     'debug|d=i' => \$debug,
@@ -47,9 +45,7 @@ if ( $ver !~ /^\s*\d+\s*$/ || $ver < 0 || $ver > 5 ) {
 print "Verbose level: $ver\n" if $ver >= 3;
 print "Working path: '" . $RealBin . "'\n" if $ver >= 4;
 
-print "Loading config file section '$conf_section_name'.\n" if $ver >= 3;
-
-my $client_conf = load_client_conf( $conf_fpath, $conf_section_name );
+my $client_conf = load_client_conf( $conf_fpath );
 
 # debug, will also dump passwd on screen
 # use Data::Dumper; print Dumper( $client_conf ) if $ver >= 5;
@@ -113,7 +109,6 @@ ttclient [options]
    --ver ... Verbose level, 0-5, default 2.
    --run_only_one_job ... Will end after the first job processing finish.
    --end_after_no_new_job ... Will end if new job not found.
-   --config_section_name ... Configuration section name. Default 'dev'.
 
   Environment variables:
     TT_SKIP_FETCH ... Skip git fetch (get_src command).
