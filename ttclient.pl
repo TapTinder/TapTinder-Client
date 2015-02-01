@@ -21,7 +21,8 @@ use TapTinder::Client::Conf qw(load_client_conf);
 
 my $help = 0;
 my $conf_section_name = 'dev';
-my $conf_fpath = catfile( $RealBin, '..', 'client-conf', 'client-conf.yml' );
+my $conf_dir = $ENV{'TAPTINDER_CLIENT_CONF_DIR'} // catfile( $RealBin, 'conf' );
+my $conf_fpath = catfile( $conf_dir, 'client-conf.yml' );
 my $ver = 2; # verbosity level
 my $debug = 0; # debug
 my $run_only_one_job = 0;
