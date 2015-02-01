@@ -1,2 +1,3 @@
 conf/*.yml
 local/
+.do_ttclient_upgrade
