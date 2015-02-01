@@ -146,9 +146,9 @@ sub init_agent {
 
     print "Starting WebAgent.\n" if $ver >= 3;
     my $agent = TapTinder::Client::WebAgent->new(
-        $self->{client_conf}->{taptinderserv},
-        $self->{client_conf}->{machine_id},
-        $self->{client_conf}->{machine_passwd},
+        $self->{client_conf}{server_url},
+        $self->{client_conf}{client_token},
+        $self->{client_conf}{reg_token},
         $self->{keypress},
         $ver,
         $debug

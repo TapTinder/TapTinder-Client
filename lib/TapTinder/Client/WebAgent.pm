@@ -10,7 +10,9 @@ use LWP::UserAgent;
 use JSON;
 
 our $VERSION = '0.21';
-use constant REVISION => 344; # ToDo
+
+# ToDo - see TapTinder::Client::WebAgent
+use constant REVISION => 400;
 
 
 =head1 NAME
@@ -30,14 +32,14 @@ TapTinder client ...
 
 sub new {
     my (
-        $class, $taptinderserv, $machine_id, $machine_passwd, $keypress_obj,
+        $class, $server_url, $client_token, $reg_token, $keypress_obj,
         $ver, $debug
     ) = @_;
 
     my $self  = {};
-    $self->{taptinderserv} = $taptinderserv;
-    $self->{machine_id} = $machine_id;
-    $self->{machine_passwd} = $machine_passwd;
+    $self->{server_url} = $server_url;
+    $self->{client_token} = $client_token;
+    $self->{reg_token} = $reg_token;
     $self->{keypress} = $keypress_obj;
 
     $ver = 2 unless defined $ver;
@@ -74,7 +76,9 @@ sub run_action {
         print "\n";
     }
 
-    my $taptinder_server_url = $self->{taptinderserv} . 'client/' . $action;
+	my $server_url = $self->{server_url};
+	$server_url .= '/' unless $server_url =~ m{\/$};
+    my $taptinder_server_url = $server_url . 'client/' . $action;
     my $resp;
 
     my $attempt_num = 0;
@@ -116,8 +120,8 @@ sub mscreate {
     my $action = 'mscreate';
     my $request = {
         ot => 'json',
-        mid => $self->{machine_id},
-        pass => $self->{machine_passwd},
+        ctok => $self->{client_token},
+        rtok => $self->{reg_token},
         crev => REVISION,
         pid => $$,
     };
@@ -132,8 +136,7 @@ sub msdestroy {
     my $action = 'msdestroy';
     my $request = {
         ot => 'json',
-        mid =>  $self->{machine_id},
-        pass => $self->{machine_passwd},
+        ctok => $self->{client_token},
         msid => $msession_id,
     };
     my $data = $self->run_action( $action, $request );
@@ -149,8 +152,7 @@ sub mspcreate {
     my $action = 'mspcreate';
     my $request = {
         ot => 'json',
-        mid => $self->{machine_id},
-        pass => $self->{machine_passwd},
+        ctok => $self->{client_token},
         msid => $msession_id,
         pid => $$,
     };
@@ -166,8 +168,7 @@ sub cget {
     my $action = 'cget';
     my $request = {
         ot =>   'json',
-        mid =>  $self->{machine_id},
-        pass => $self->{machine_passwd},
+        ctok => $self->{client_token},
         msid => $msession_id,
         mspid => $msproc_id,
         an => $attempt_number,
@@ -188,8 +189,7 @@ sub sset {
     my $request_upload = 0;
     my $request = {
         ot =>   'json',
-        mid =>  $self->{machine_id},
-        pass => $self->{machine_passwd},
+        ctok => $self->{client_token},
         msid => $msession_id,
         mspid => $msproc_id,
         mcid => $msjobp_cmd_id,
@@ -218,8 +218,7 @@ sub rciget {
     my $action = 'rciget';
     my $request = {
         ot =>   'json',
-        mid =>  $self->{machine_id},
-        pass => $self->{machine_passwd},
+        ctok => $self->{client_token},
         msid => $msession_id,
         mspid => $msproc_id,
         rcid => $rcommit_id,
@@ -237,8 +236,7 @@ sub mevent {
     my $action = 'mevent';
     my $request = {
         ot   => 'json',
-        mid  => $self->{machine_id},
-        pass => $self->{machine_passwd},
+        ctok => $self->{client_token},
         msid => $msession_id,
         mcid => $msjobp_cmd_id,
         en   => $event_name,
