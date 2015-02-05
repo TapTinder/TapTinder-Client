@@ -37,6 +37,7 @@ sub new {
     ) = @_;
 
     my $self  = {};
+    print "Server url: $server_url\n" if $ver >= 4;
     $self->{server_url} = $server_url;
     $self->{client_token} = $client_token;
     $self->{reg_token} = $reg_token;

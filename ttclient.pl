@@ -45,6 +45,7 @@ if ( $ver !~ /^\s*\d+\s*$/ || $ver < 0 || $ver > 5 ) {
 print "Verbose level: $ver\n" if $ver >= 3;
 print "Working path: '" . $RealBin . "'\n" if $ver >= 4;
 
+print "Loading config from: $conf_fpath\n" if $ver >= 4;
 my $client_conf = load_client_conf( $conf_fpath );
 
 # debug, will also dump passwd on screen
